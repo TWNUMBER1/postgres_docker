@@ -8,13 +8,13 @@ make build TAG=<image version>
 
 ### To run docker with specified command
 ```sh
-make run CMD=<command> #/bin/bash, or default if not specify it
+make run TAG=<image version> CMD=<command> #/bin/bash, or default if not specify it
 ```
 
 ### To push to docker io
 ```sh
 make login // To log into docker io first
-make push 
+make push TAG=<image version>
 ```
 
 ### To clean containers and images
