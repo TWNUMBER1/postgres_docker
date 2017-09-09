@@ -3,5 +3,23 @@
 
 ### To build docker to generate image
 ```sh
-docker build -t <images_name> .
+make build TAG=<image version> 
+```
+
+### To run docker with specified command
+```sh
+make run CMD=<command> #/bin/bash, or default if not specify it
+```
+
+### To push to docker io
+```sh
+make login // To log into docker io first
+make push 
+```
+
+### To clean containers and images
+```sh
+make rmcontainer //To remove containers
+make rmimage //To remove images
+make clena  //Remove conatiner and images together
 ```
