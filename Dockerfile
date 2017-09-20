@@ -8,4 +8,5 @@ VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
 
 COPY ./config /myconfig
 COPY ./docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
+COPY ./scripts /scripts
 RUN chmod 755 /docker-entrypoint-initdb.d/
