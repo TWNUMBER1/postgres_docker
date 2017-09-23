@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS
 users (
   id           integer PRIMARY KEY,
   name         varchar(200),
+  delete_tag   integer,
   created_date timestamp
 );
 
@@ -21,7 +22,18 @@ CREATE TABLE IF NOT EXISTS
 places (
   id           integer PRIMARY KEY,
   name         varchar(200),
+  gid          integer,
+  address      varchar(200),
+  yelpurl      varchar(200),
+  delete_tag   integer, 
+  count        integer,
   created_date timestamp
+);
+
+CREATE TABLE IF NOT EXISTS
+users_places (
+  uid          integer,
+  pid          integer
 );
 
 COMMIT;
