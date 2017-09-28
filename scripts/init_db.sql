@@ -33,7 +33,8 @@ places (
 CREATE TABLE IF NOT EXISTS
 users_places (
   uid          integer,
-  pid          integer
+  pid          integer,
+  PRIMARY KEY(uid, pid)
 );
 
 COMMIT;
