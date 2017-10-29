@@ -1,6 +1,6 @@
 CURRENT_DIR:=$(shell PWD)
 IMAGE_NAME=$(shell basename $(CURRENT_DIR))
-TAG:="latest"
+TAG:=latest
 USERNAME:=""
 PWD:=""
 REGISTRY=tsungchh
@@ -38,8 +38,15 @@ else
 	docker push ${REGISTRY}/${IMAGE_NAME}:${TAG} && docker push ${REGISTRY}/${IMAGE_NAME}:latest
 endif
 
-
 run: build
-	docker run -it -p 5432:5432 ${REGISTRY}/${IMAGE_NAME}:${TAG} ${CMD}
+ifeq ($(CMD),)
+	docker run --name "postgres" -d --rm -p 5432:5432 ${REGISTRY}/${IMAGE_NAME}:${TAG}
+else
+	docker run -it --name "postgres" --rm -p 5432:5432 ${REGISTRY}/${IMAGE_NAME}:${TAG} ${CMD}
+endif
+
+# run: build
+# 	docker run -it -p 5432:5432 ${REGISTRY}/${IMAGE_NAME}:${TAG} ${CMD}
+# 	docker run --name "postgres" -d --rm -p 5432:5432 tsungchh/postgres_docker:$(POSTGRESTAG)
 
 .PHONY: login rmc rmi rmdangling clean push build run
